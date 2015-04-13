@@ -6,8 +6,12 @@ import java.io.FileOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
-
-public class Zip {
+/**
+ * JDK原生方法
+ * @author lenovo
+ *
+ */
+public class RawZip {
 	/**
 	 * 用java自带的类压缩文件
 	 * @throws Exception
@@ -83,7 +87,7 @@ public class Zip {
 		zis.close();
 	}
 	public static void main(String[] args) throws Exception {
-		new Zip().zip();
+		new RawZip().zip();
 	}
 
 }
