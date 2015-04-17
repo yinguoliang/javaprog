@@ -1,0 +1,18 @@
+keytool主要是用来维护秘钥库的
+openssl的功能要强大得多，openssl可以做：
+  1. 生成公钥、私钥
+  2. 生成证书：用证书对其他公钥进行签名
+  3. 加密、解密；生成摘要；
+  4. 。。。。。。
+
+示例：
+1） 生成秘钥对
+    openssl genrsa -des3 -out my.key 1024
+    会提示输入文件的保护密码，也可以去除文件的保护密码，方式如下
+    openssl rsa -in my.key -out my.key
+2) 生成CSR文件，CSR文件必须有CA的签名才可形成证书
+    openssl req -new -key my/my.key -out my/my.csr
+3) 生成一个证书，可以用作CA证书来对CSR进行签名
+	openssl req -new -x509 -keyout my/ca.key -out my/ca.crt
+4) 对CSR进行前面，生成一个证书
+	openssl ca -in my/my.csr -out my/my.crt -cert my/ca.crt -keyfile my/ca.key

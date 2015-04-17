@@ -1,0 +1,56 @@
+************利用keytool生成密码***************
+####生成一个Keystore文件，算法可以算则RSA、DSA
+keytool -genkeypair -alias ygl -keyalg RSA -keystore ./my.keystore -storepass 123456 -keypass p123456
+keytool -genkeypair -alias yglah -keyalg RSA -keystore ./yglah.keystore -storepass 123456 -keypass p123456
+        注意，早期版本是使用的是-genkey,在当前版本中也是被支持的，
+        但是推荐使用genkeypair
+        
+####列出keystore中的条目
+keytool -list -keystore ./my.keystore -storepass 123456
+keytool -list -rfc -keystore ./my.keystore -storepass 123456
+
+####从keystore中导出证书
+keytool -export -alias ygl -keystore ./my.keystore -storepass 123456 -keypass p123456 -file ./ygl.cer
+keytool -export -alias yglah -keystore ./yglah.keystore -storepass 123456 -keypass p123456 -file ./yglah.cer
+
+####查看导出的证书
+keytool -printcert -file ./ygl.cer
+
+####将yglah.cer导入到my.keystore中
+keytool -import -alias yglah -file ./yglah.cer -keystore ./my.keystore -storepass 123456
+           导入命令：-import,-importcert,-importkeystore
+           
+####查看my.keystore文件，文件如下：
+keytool -list -keystore ./my.keystore -storepass 123456
+	Keystore 类型： JKS
+	Keystore 提供者： SUN
+
+	您的 keystore 包含 2 输入
+
+	yglah, 2015-4-17, trustedCertEntry,
+	认证指纹 (MD5)： 13:6A:07:DA:B3:69:0A:34:81:0C:F1:8A:22:26:FA:95
+	ygl, 2015-4-17, PrivateKeyEntry,
+	认证指纹 (MD5)： 71:CE:87:9E:94:0E:31:3A:E1:C7:32:0A:1A:83:53:32
+
+####可以向一个存在的keystore中存入一个keypair
+keytool -genkeypair -alias ygl2 -keyalg RSA -keystore ./my.keystore -storepass 123456 -keypass p123456
+
+####生成一个JCEKS格式的keystore文件，参数-storetype JCEKS
+    JCEKS的保护强度比JKS要强
+keytool -genseckey -storetype JCEKS -alias ygl.seckey -keyalg DES -keystore ./my.jceks -storepass 123456 -keypass pk123456 	
+
+####导入证书到JCEKS文件中，注意参数-storetype JCEKS
+keytool -importcert -storetype JCEKS -alias yglah -file ./yglah.cer -keystore ./my.jceks -storepass 123456
+
+####查看JCEKS keystore文件
+keytool -list -storetype JCEKS -keystore ./my.jceks -storepass 123456
+####加入一个key pair
+keytool -genkeypair -storetype JCEKS -alias ygl2 -keyalg RSA -keystore ./my.jceks -storepass 123456 -keypass p123456
+
+************使用java读取keystore*****************
+     参考TestKeyStore
+
+
+
+
+	
