@@ -14,7 +14,10 @@ openssl的功能要强大得多，openssl可以做：
     openssl req -new -key my.key -out my.csr
 3) 生成一个证书，可以用作CA证书来对CSR进行签名
 	openssl req -new -x509 -keyout ca.key -out ca.crt
-4) 对CSR进行前面，生成一个证书。这里会报错，暂时未解决
+4) 对CSR进行前面，生成一个证书。
+	 要生成证书的目录下建立几个文件和文件夹，有./demoCA/ ./demoCA/newcerts/
+	 ./demoCA/index.txt ./demoCA/serial，
+	 在serial文件中写入第一个序列号“01”
 	openssl ca -in my.csr -out my.crt -cert ca.crt -keyfile ca.key
 	
 示例2：生成私钥和公钥
@@ -27,7 +30,13 @@ openssl的功能要强大得多，openssl可以做：
 	openssl pkcs8 -topk8 -inform PEM -in my/my.key -outform PEM -nocrypt -out my/my.pkcs8.key
 3) 使用java读取私钥和公钥
    参考TestOpenSSL.readPrivateKey和readPublicKey
-   
+
+
+****************疑问 Question****************
+1. keytool工具生成的keystore文件，可以保存很多公钥、私钥、证书，
+   openssl生成的Pfx是否也可以保存多个？？？？
+        貌似pfx只能保存一个证书和私钥
+
    
    
 
