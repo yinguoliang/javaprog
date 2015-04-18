@@ -5,14 +5,29 @@ openssl的功能要强大得多，openssl可以做：
   3. 加密、解密；生成摘要；
   4. 。。。。。。
 
-示例：
+示例1：生成证书
 1） 生成秘钥对
     openssl genrsa -des3 -out my.key 1024
     会提示输入文件的保护密码，也可以去除文件的保护密码，方式如下
-    openssl rsa -in my.key -out my.key
+    openssl rsa -in my/my.key -out my/my.key
 2) 生成CSR文件，CSR文件必须有CA的签名才可形成证书
-    openssl req -new -key my/my.key -out my/my.csr
+    openssl req -new -key my.key -out my.csr
 3) 生成一个证书，可以用作CA证书来对CSR进行签名
-	openssl req -new -x509 -keyout my/ca.key -out my/ca.crt
-4) 对CSR进行前面，生成一个证书
-	openssl ca -in my/my.csr -out my/my.crt -cert my/ca.crt -keyfile my/ca.key
+	openssl req -new -x509 -keyout ca.key -out ca.crt
+4) 对CSR进行前面，生成一个证书。这里会报错，暂时未解决
+	openssl ca -in my.csr -out my.crt -cert ca.crt -keyfile ca.key
+	
+示例2：生成私钥和公钥
+1) 生成秘钥对(genrsa,gendsa)
+    openssl genrsa -des3 -out my.key 1024
+2) 提取公钥
+    openssl rsa -pubout -in my/my.key -out my/pub.key
+3) 转为PKCS8格式
+    P.S:openssl直接生成的文件好像无法直接使用，需要先转换成pkcs8格式才能使用java读取
+	openssl pkcs8 -topk8 -inform PEM -in my/my.key -outform PEM -nocrypt -out my/my.pkcs8.key
+3) 使用java读取私钥和公钥
+   参考TestOpenSSL.readPrivateKey和readPublicKey
+   
+   
+   
+
