@@ -1,0 +1,16 @@
+1. 生成一个keystore文件
+   keytool -genkeypair -keyalg rsa -keystore server.keystore -storepass 123456
+   keytool -genkeypair -keyalg rsa -keystore client.keystore -storepass 123456
+2. 服务端TestSSLServerSocket使用server.keystore初始化SSLContext
+   server.keystore中存储了公钥和私钥，公钥会在连接时发送到客户端。
+        客户端在收到公钥证书时对该证书进行信任校验。
+
+3. 客户端TestSSLClientSocket
+        客户端在TrustManager中判断对某个证书是否信任。
+        服务端会在会话时将其证书发送到客户端。
+        
+********************  summary **************************
+1) 使用https连接时，服务器会将自己的公钥发送到客户端
+2) 客户端收到公钥后，会对该公钥进行信任决策，使用JAVA编程时，java的TrustManager会对证书进行校验
+3) 如果服务端设置了needClientAuth(true),那么就会对客户端传递过来的证书进行验证
+        调用TrustManager.checkClientTrusted()
