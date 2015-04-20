@@ -59,6 +59,8 @@ public class TestSSLClientSocket {
 						X509Certificate cert = chain[0];
 						System.out.println(cert.getSerialNumber());
 						System.out.println(cert.getIssuerDN().getName());
+						//如果我们拿到了公钥的签名证书，即CA证书，并从中读取了publicKey,则可使用如下方法来验证证书
+						//cert.verify(publickey);
 						System.out.println("************checkServerTrusted done***********");
 						//throw new RuntimeException("untrusted certificate");
 					}
