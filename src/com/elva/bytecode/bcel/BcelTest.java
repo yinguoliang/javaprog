@@ -21,7 +21,7 @@ import org.apache.bcel.generic.MethodGen;
 import org.apache.bcel.generic.ObjectType;
 import org.apache.bcel.generic.PUSH;
 import org.apache.bcel.generic.Type;
-
+@SuppressWarnings({"rawtypes","unused"})
 public class BcelTest {
 	private static void modifyWrapper(ClassGen cgen,Method method){
         InstructionFactory ifact = new InstructionFactory(cgen);
@@ -46,7 +46,8 @@ public class BcelTest {
         System.out.println("看看这个方法的InstructionList-----------------------------start");
         
         System.out.println("看看这个方法InstructionList的各个InstructionHandle的信息--------------------start");
-        Iterator handleIt = ilist.iterator();
+        
+		Iterator handleIt = ilist.iterator();
         
         while(handleIt.hasNext()){
             InstructionHandle iHandle = (InstructionHandle)handleIt.next();
@@ -70,7 +71,7 @@ public class BcelTest {
         Type returnType = wrapgen.getReturnType();
         
         Type[] types = wrapgen.getArgumentTypes();
-        int slot = wrapgen.isStatic()?0:1;//非静态方法slot 0处应该存储的是this
+		int slot = wrapgen.isStatic()?0:1;//非静态方法slot 0处应该存储的是this
         //// 这种方式与Java如何处理方法调用有关。对于非静态的方法，每次调用的第一个（隐藏的）参数是目标对象的this引用（就是位置0储存的内容）。
         for(int i = 0;i<types.length;i++){
             slot += types[i].getSize();//long,double的size为2
