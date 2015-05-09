@@ -57,5 +57,15 @@
   		<artifactId>aspectjweaver</artifactId>
   		<version>1.5.4</version>
   	</dependency>
+  	<dependency>
+  		<groupId>mysql</groupId>
+  		<artifactId>mysql-connector-java</artifactId>
+  		<version>5.1.35</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-jdbc</artifactId>
+  		<version>4.1.6.RELEASE</version>
+  	</dependency>
   </dependencies>
 </project>

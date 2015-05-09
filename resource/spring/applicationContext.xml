@@ -4,9 +4,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
 		" default-autowire="byName">
 	<!-- intercepter -->
 	<bean id="timeInterceptor"
@@ -16,6 +18,21 @@
 	<!-- service -->
 	<bean id="helloService" 
 		class="com.elva.spring.service.impl.HelloServiceImpl"/>
+	<bean id="businessService" 
+		class="com.elva.spring.service.impl.BusinessServiceImpl"/>
+	<!-- dao -->
+	<bean id="testDao"
+		class="com.elva.spring.dao.impl.TestDaoImpl"/>
+	<!-- data source -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
 	<!-- aop -->
 	<aop:config>
 		<aop:pointcut expression="execution(* com..service..*.*(..))" id="servicepointcut"/>
@@ -24,5 +41,17 @@
 		<aop:advisor advice-ref="timeInterceptor" pointcut-ref="servicepointcut"/>
 		<aop:advisor advice-ref="printcalInterceptor" pointcut-ref="servicepointcut"/>
 	</aop:config>
-	
+	<!-- transaction -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="findAllNames" propagation="REQUIRED"/>
+			<tx:method name="*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="servicepointcut"/>
+	</aop:config>
 </beans>
