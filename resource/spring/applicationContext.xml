@@ -54,4 +54,7 @@
 	<aop:config>
 		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="servicepointcut"/>
 	</aop:config>
+	<!-- event -->
+	<bean id="helloEventListner"
+		class="com.elva.spring.event.HelloEventListner"/>
 </beans>

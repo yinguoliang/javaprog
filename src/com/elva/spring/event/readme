@@ -1,0 +1,15 @@
+spring的事件机制
+1）spring的事件机制基于Observer模型建立的
+2）ApplicationListener扮演Observer角色
+3）ApplicationEventMulticaster扮演Subject角色
+
+observer模型中，所有的observer都要想subject注册
+Spring IoC容器在初始化时，AbstractApplicationContext
+的refresh()方法中，调用registerListeners()进行
+注册。
+
+registerListners()方法会遍历所有的
+ApplicationListener类型的bean，然后将其注册到
+类ApplicationEventMulticaster中。
+
+*********************************************
