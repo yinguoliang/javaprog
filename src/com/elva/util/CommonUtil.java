@@ -1,6 +1,5 @@
 package com.elva.util;
 
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
 public class CommonUtil {
