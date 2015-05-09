@@ -1,0 +1,14 @@
+ASM是一个java字节码操纵框架，它能被用来动态生成类或者增强既有类的功能。
+
+ASM提供了一个类似Xml的SAX功能，从头到尾遍历字节码，然后对字节码进行相关的处理
+
+ClassReader:
+     从头至尾遍历字节码，并调用visit,visitMethod,visitCode,visitInst等方法。
+  ClassReader在遇到java字节码中的元素时，如method,code,attribute时，就调用相关的方法进行处理。
+  
+ClassWriter:
+   接受字节码，并将其保存在内部，最后可以通过toByteArray将读到的字节码输出。
+
+************总结***************
+ASM是一个非常底层的字节码操纵工具，能够针对方法、指令、属性等底层细节进行操作。
+cglib就是利用asm来进行底层字节码的生成的。
