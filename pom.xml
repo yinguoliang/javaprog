@@ -87,5 +87,10 @@
   		<artifactId>bcprov-jdk16</artifactId>
   		<version>140</version>
   	</dependency>
+  	<dependency>
+  		<groupId>io.netty</groupId>
+  		<artifactId>netty-all</artifactId>
+  		<version>4.1.0.Final</version>
+  	</dependency>
   </dependencies>
 </project>
