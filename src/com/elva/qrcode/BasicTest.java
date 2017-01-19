@@ -21,6 +21,24 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 
 public class BasicTest {
+    
+    public static void createCode() throws Exception{
+        BitMatrix bm = null;
+        Path path = null;
+        //code bar
+        bm=new MultiFormatWriter().encode("1233", BarcodeFormat.CODABAR, 400, 40);
+        path = FileSystems.getDefault().getPath("d:/", "hello_bar.png");
+        MatrixToImageWriter.writeToPath(bm, "png", path);
+//        //EAN 13
+//        bm=new MultiFormatWriter().encode("1234567890123", BarcodeFormat.EAN_13, 400, 400);
+//        path = FileSystems.getDefault().getPath("d:/", "hello_ean13.png");
+//        MatrixToImageWriter.writeToPath(bm, "png", path);
+//        //PDF 417
+//        bm=new MultiFormatWriter().encode("Hello QRCode", BarcodeFormat.PDF_417, 400, 400);
+//        path = FileSystems.getDefault().getPath("d:/", "hello_pdf417.pdf");
+//        MatrixToImageWriter.writeToPath(bm, "png", path);
+    }
+    
     public static void createQRCode() throws Exception{
         BitMatrix bm = 
                 new MultiFormatWriter().encode("Hello QRCode", BarcodeFormat.QR_CODE, 400, 400);
@@ -38,7 +56,8 @@ public class BasicTest {
     }
     
     public static void main(String args[]) throws Exception{
+        createCode();
 //        createQRCode();
-        readQRCode();
+//        readQRCode();
     }
 }
