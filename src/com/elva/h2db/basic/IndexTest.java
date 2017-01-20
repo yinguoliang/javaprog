@@ -50,15 +50,13 @@ public class IndexTest {
         while(rs.next()){
             System.out.println(rs.getInt(1)+","+rs.getString(2)+","+rs.getDate(3));
         }
-        rs = stm.executeQuery("select * from big_table_index where id =  1954999 ");
-        while(rs.next()){
-            System.out.println(rs.getInt(1)+","+rs.getString(2)+","+rs.getDate(3));
-        }
-        rs = stm.executeQuery("select * from big_table_index where id =  1912999 ");
-        while(rs.next()){
-            System.out.println(rs.getInt(1)+","+rs.getString(2)+","+rs.getDate(3));
-        }
         System.out.println("cost time :"+(System.currentTimeMillis()-start));
+        System.out.println("--------------explain----------------");
+        rs = stm.executeQuery("explain select * from big_table_index where id between 10 and 100 ");
+        while(rs.next()){
+            System.out.println(rs.getString(1));
+        }
+        
         rs.close();
         stm.close();
     }
