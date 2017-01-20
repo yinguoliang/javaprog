@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class DerbyIndexTest {
     static String driver = "org.apache.derby.jdbc.EmbeddedDriver";
-    static String jdbc_url = "jdbc:derby:D:/derby/firstDB;create=true";
+    static String jdbc_url = "jdbc:derby:D:/embeddedDB/derby/firstDB;create=true";
     static void createDB() throws Exception{
         Class.forName(driver);
         Connection conn = DriverManager.getConnection(jdbc_url);
