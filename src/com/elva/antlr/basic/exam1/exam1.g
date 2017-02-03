@@ -1,7 +1,7 @@
 grammar Expr;
 
-@header {package expr;}
-@lexer::header{package expr;}
+@header {package com.elva.antlr.basic.exam1;}
+@lexer::header{package com.elva.antlr.basic.exam1;}
 
 prog: stat  
 ;
