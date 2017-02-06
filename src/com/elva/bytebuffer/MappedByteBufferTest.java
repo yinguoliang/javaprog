@@ -8,7 +8,7 @@ import java.nio.channels.FileChannel.MapMode;
 public class MappedByteBufferTest {
     /**
      * ≤‚ ‘MappedByteBuffer–¥
-     * @throws Exception
+     * @throws Exception  
      */
     public static void testWrite() throws Exception{
         FileChannel fc = new RandomAccessFile("d:/hello","rw").getChannel();
