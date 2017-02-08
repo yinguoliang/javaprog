@@ -15,6 +15,10 @@ import io.reactivex.functions.Function;
 
 public class RxJavaBaseTest {
 	public static void test1() throws Exception{
+	    
+	    /*
+	     * Flowable是RxJava 2.x引入的，包含了Backpressure的处理
+	     */
 		Flowable<String> flowable=
 		Flowable.create(new FlowableOnSubscribe<String>(){
 			public void subscribe(FlowableEmitter<String> e) throws Exception {
@@ -95,6 +99,7 @@ public class RxJavaBaseTest {
 							if("exit".equals(msg)){
 								break;
 							}
+							System.out.println(Thread.currentThread().getName()+">> next msg >>>"+msg);
 							e.onNext(msg);
 						}
 						e.onComplete();
@@ -102,7 +107,7 @@ public class RxJavaBaseTest {
 		
 		Consumer<String> consumer = new Consumer<String>(){
 			public void accept(String t) throws Exception {
-				System.out.println("consume...."+t);
+			    System.out.println(Thread.currentThread().getName()+">> consume msg >>>"+t);
 			}
 		};
 		
@@ -112,7 +117,8 @@ public class RxJavaBaseTest {
 				return t+"::22";
 			}});
 		
-		flowable2.subscribe(consumer);
+//		flowable2.subscribe(consumer);
+		System.out.println(Thread.currentThread().getName()+">> main thread ");
 		flowable.subscribe(consumer);
 	}
 	public static void main(String args[]) throws Exception{

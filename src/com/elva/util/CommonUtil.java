@@ -19,4 +19,8 @@ public class CommonUtil {
 //		
 //		return bos.toString();
 	}
+	
+	public static String currentThreadName(){
+	    return Thread.currentThread().getName();
+	}
 }
