@@ -4,12 +4,13 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.alibaba.fastjson.JSON;
-
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+
+import com.alibaba.fastjson.JSON;
 
 class User implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -22,6 +23,9 @@ class User implements Serializable{
 interface QueryService{
 	@GET("/users/basil2style")
 	Call<User> queryRepo();
+	
+	@GET("/users/basil2style")
+	Response<User> queryUser();
 }
 /**
  * =====================================================
@@ -35,11 +39,16 @@ public class RetrofitBaseTest {
 	public static void test1() throws IOException{
 		Retrofit retrofit = new Retrofit.Builder()
 				.baseUrl("https://api.github.com")
+//				.addCallAdapterFactory(RxJavaCallAdapterFactory.create())
 				.addConverterFactory(GsonConverterFactory.create())
 				.build();
 		QueryService service = retrofit.create(QueryService.class);
-		Call<User> res = service.queryRepo();
-		System.out.println(JSON.toJSONString(res.execute().body(),true));
+		Call<User> call = service.queryRepo();
+		System.out.println(JSON.toJSONString(call.clone().execute().body(),true));
+		System.out.println(JSON.toJSONString(call.execute().body(),true));
+		
+//		Response<User> res=service.queryUser();
+//		U.print(JSON.toJSONString(res.body(),true));
 	}
 	/**
 	 * *******************main**************************
