@@ -17,7 +17,7 @@ public class RxJavaTest7 {
 				return t%3;
 			}})
 		.subscribe(new Consumer<GroupedObservable<Integer,Integer>>(){
-			public void accept(GroupedObservable<Integer, Integer> group) throws Exception {
+			public void accept(final GroupedObservable<Integer, Integer> group) throws Exception {
 				group.subscribe(new Consumer<Integer>(){
 					public void accept(Integer t) throws Exception {
 						U.print(group.getKey()+":"+t);
@@ -34,7 +34,7 @@ public class RxJavaTest7 {
 		.buffer(5)
 		.subscribe(new Consumer<List<GroupedObservable<Integer,Integer>>>(){
 			public void accept(List<GroupedObservable<Integer, Integer>> groups) throws Exception {
-				for(GroupedObservable<Integer, Integer> group : groups)
+				for(final GroupedObservable<Integer, Integer> group : groups)
 				group.subscribe(new Consumer<Integer>(){
 					public void accept(Integer t) throws Exception {
 						U.print(group.getKey()+":"+t);
