@@ -1,5 +1,8 @@
 package com.elva.random;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Date;
 import java.util.Random;
 
 public class RandomTest {
@@ -13,6 +16,14 @@ public class RandomTest {
         System.out.println(random.nextInt());
         System.out.println(random.nextInt());
         System.out.println(random.nextInt());
+        
+        //下面这种通过毫秒数来作为种子的做法，很容易重复
+        System.out.println(new Random(new Date().getTime()).nextInt());
+        System.out.println(new Random(new Date().getTime()).nextInt());
+        System.out.println(new Random(new Date().getTime()).nextInt());
+        System.out.println(new Random(new Date().getTime()).nextInt());
+        System.out.println(new Random(new Date().getTime()).nextInt());
+        
     }
     public static void test2(){
         /*
@@ -38,7 +49,21 @@ public class RandomTest {
             }
         }
     }
+    public static void test3(){
+        //SecureRandom
+        try {
+            SecureRandom sr=SecureRandom.getInstance("SHA1PRNG");
+            sr.setSeed(1234332);
+            System.out.println(sr.nextInt(1000000));
+            System.out.println(sr.nextInt(1000000));
+            System.out.println(sr.nextInt(1000000));
+            System.out.println(sr.nextInt(1000000));
+            System.out.println(sr.nextInt(1000000));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
     public static void main(String args[]) {
-        test2();
+        test1();
     }
 }

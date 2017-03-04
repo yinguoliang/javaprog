@@ -39,19 +39,24 @@ public class Hello {
             start();
         }
     }
+    enum Factory{
+        DATE ("date"){
+           public void hello(){
+               System.out.println("this is date");
+           }
+        },
+        STR ("str"){
+            public void hello(){
+                System.out.println("this is str");
+            }
+         }
+        ;
+        private Factory(String name){
+            System.out.println("ENUM CREATED:::::"+name);
+        }
+        public abstract void hello();
+    }
 	public static void main(String[] args) throws Exception {
-	    Random r = new Random();
-	    System.out.println(r.nextInt(100));
-	    r = new Random(1000);
-	    System.out.println(r.nextInt(100));
-	    r = new Random(1000);
-	    System.out.println(r.nextInt(100));
-	    r = new Random(1000);
-	    System.out.println(r.nextInt(100));
-	    r = new Random(1000);
-	    System.out.println(r.nextInt(100));
-	    System.out.println(r.nextInt(100));
-	    System.out.println(r.nextInt(100));
-	    r.nextGaussian();
+	    
 	}
 }

@@ -12,7 +12,7 @@ public class AviatorTest {
         env.put("praise", 10);
         env.put("cardNo", "");
         env.put("hour", 5);
-        U.print(AviatorEvaluator.execute("praise > 10 ", env));
+        U.print(AviatorEvaluator.execute("praise >= 10 && hour == 5", env));
         U.print(AviatorEvaluator.execute("praise > 5 ", env).getClass());
         
         U.print(AviatorEvaluator.execute("cardNo != '' ", env));
