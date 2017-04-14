@@ -25,10 +25,18 @@ public class FileChannelTest {
         p("********read也改变position*************");
         ByteBuffer dst = ByteBuffer.allocate((int)fc.size());
         fc.position(0);//position设置到开始位置
-        int len = fc.read(dst);
+        int len = fc.read(dst);//会position改变了
         p("read len = "+len);
         p(fc.size());
-        p(fc.position());//position改变了
+        p(fc.position());
+        p(new String(dst.array()));
+        p("********read不改变position*************");
+        ByteBuffer dst2 = ByteBuffer.allocate((int)fc.size());
+        fc.position(0);//position设置到开始位置
+        int len2 = fc.read(dst2,fc.size());//指定length时不改变position
+        p("read len = "+len2);
+        p(fc.size());
+        p(fc.position());//position没变
         p(new String(dst.array()));
     }
     public static void main(String args[]) throws Exception{
