@@ -1924,7 +1924,7 @@ public final class Pattern implements java.io.Serializable {
         // Copy pattern to int array for convenience
         // Use double zero to terminate pattern
         temp = new int[patternLength + 2];
-
+        char[] tempChar = new char[patternLength+2];
         hasSupplementary = false;
         int c, count = 0;
         // Convert all chars into code points
@@ -1933,6 +1933,7 @@ public final class Pattern implements java.io.Serializable {
             if (isSupplementary(c)) {
                 hasSupplementary = true;
             }
+            tempChar[count] = (char)c;
             temp[count++] = c;
         }
 
@@ -2115,6 +2116,7 @@ public final class Pattern implements java.io.Serializable {
      */
     private int next() {
         int ch = temp[++cursor];
+        char cc = (char)ch;
         if (has(COMMENTS))
             ch = peekPastWhitespace(ch);
         return ch;
@@ -2126,6 +2128,7 @@ public final class Pattern implements java.io.Serializable {
      */
     private int nextEscaped() {
         int ch = temp[++cursor];
+        char cc = (char)ch;
         return ch;
     }
 
@@ -2553,6 +2556,7 @@ public final class Pattern implements java.io.Serializable {
      */
     private int escape(boolean inclass, boolean create) {
         int ch = skip();
+        char cc = (char)ch;
         switch (ch) {
             case '0':
                 return o();
@@ -2909,6 +2913,7 @@ public final class Pattern implements java.io.Serializable {
 
     private int single() {
         int ch = peek();
+        char cc = (char)ch;
         switch (ch) {
             case '\\':
                 return escape(true, false);
@@ -3059,6 +3064,7 @@ public final class Pattern implements java.io.Serializable {
         int save = flags;
         root = null;
         int ch = next();
+        char cc = (char)ch;
         if (ch == '?') {
             ch = skip();
             switch (ch) {
@@ -3996,6 +4002,7 @@ public final class Pattern implements java.io.Serializable {
         boolean match(Matcher matcher, int i, CharSequence seq) {
             if (i < matcher.to) {
                 int ch = Character.codePointAt(seq, i);
+                char cc = (char)ch;
                 return isSatisfiedBy(ch) && next.match(matcher, i + Character.charCount(ch), seq);
             } else {
                 matcher.hitEnd = true;
@@ -4017,7 +4024,9 @@ public final class Pattern implements java.io.Serializable {
     private static abstract class BmpCharProperty extends CharProperty {
         boolean match(Matcher matcher, int i, CharSequence seq) {
             if (i < matcher.to) {
-                return isSatisfiedBy(seq.charAt(i)) && next.match(matcher, i + 1, seq);
+            	char cc = (char)seq.charAt(i);
+            	boolean b1 = isSatisfiedBy(seq.charAt(i)); 
+                return b1 && next.match(matcher, i + 1, seq);
             } else {
                 matcher.hitEnd = true;
                 return false;
