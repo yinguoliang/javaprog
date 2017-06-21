@@ -14,6 +14,7 @@ public class AsmVisitorTest {
 
 		public void visit(int arg0, int arg1, String arg2, String arg3,
 				String arg4, String[] arg5) {
+			System.out.println("aaaaaaaaaaa");
 			System.out.println("******* visit class: "+arg2+" **********");
 		}
 

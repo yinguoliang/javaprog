@@ -10,6 +10,7 @@ import org.objectweb.asm.Opcodes;
 @SuppressWarnings("rawtypes")
 public class AsmGeneratorTest {
 	public void generate() throws Exception{
+		System.out.println("aaaaaaaaaaa");
 		ClassWriter writer = new ClassWriter(0);
 		//Í·²¿
 		writer.visit(

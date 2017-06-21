@@ -13,6 +13,7 @@ import org.objectweb.asm.Opcodes;
 
 public class AsmUpdaterTest {
 	public void updateClass() throws Exception{
+		System.out.println("aaaaaaaaaaa");
 		FileInputStream in = new FileInputStream("f:/temp/Hello.class");
 		// ClassReader将从头到尾扫描字节码，并调用回调函数处理扫描到的字节码
 		ClassReader reader = new ClassReader(in);
