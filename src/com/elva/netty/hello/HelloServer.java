@@ -17,8 +17,11 @@ import io.netty.handler.codec.string.StringEncoder;
 
 public class HelloServer {
     public static void main(String args[]) throws Exception{
-
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
+        /*Netty的boss是一个线程组。实际上Netty的ServerBootstrap可以监听多个端口号，
+         * 如果只监听一个端口号，那么只需要一个boss线程即可，
+         * 推荐将bossGroup的线程数量设置成1*/
+        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        /*worker线程组处理IO请求*/
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         
         ServerBootstrap b = new ServerBootstrap();

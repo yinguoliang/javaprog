@@ -38,7 +38,6 @@ public class JavassistTest {
 		ctClass.addMethod(newMethod);
 		
 		Hello hello=(Hello)ctClass.toClass().newInstance();
-		hello.sayHello();
 	}
 
 }
