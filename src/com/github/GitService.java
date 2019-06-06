@@ -7,5 +7,6 @@ public class GitService {
 	public void test() {
 		System.out.println("Hello Git");
 		System.out.println("AA >>> BB >> CC");
+		System.out.println("cost time = " + System.currentTimeMillis());
 	}
 }
