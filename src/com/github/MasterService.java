@@ -5,5 +5,6 @@ public class MasterService {
 		System.out.println("Hello main");
 		System.out.println("哈哈");
 		System.out.println("呵呵");
+		System.out.println("嘿嘿");
 	}
 }
