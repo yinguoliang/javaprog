@@ -15,6 +15,7 @@ public class GitService {
 		System.out.println("add in end");
 		System.out.println("这是local分支");
 		System.out.println("删除了tracing分支，且没有configure branch");
+		//asdfsfasfasfasf
 		System.out.println(">>>>>>>>>>>>>>>>>");
 	}
 }
