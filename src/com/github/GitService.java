@@ -3,9 +3,12 @@ package com.github;
 import org.junit.Test;
 
 public class GitService {
+	public void test2() {
+	}
+
 	@Test
 	public void test() {
-		///asdffad
+		/// asdffad
 		/// addd xxxxxx
 		System.out.println("add in head");
 		System.out.println("Hello Git");
@@ -14,11 +17,5 @@ public class GitService {
 		System.out.println("mater branch b1 ");
 		System.out.println("mater branch b1 ");
 		System.out.println("greate world");
-		System.out.println("add in end");
-		System.out.println("这是local分支");
-		System.out.println("删除了tracing分支，且没有configure branch");
-		//asdfsfasfasfasf
-		System.out.println(">>>>>>>>>>>>>>>>>");
-		// add comment
 	}
 }
