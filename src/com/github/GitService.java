@@ -4,9 +4,9 @@ import org.junit.Test;
 
 public class GitService {
 	public void test2(String x) {
-		//asdsffasfsa
+		//asdsffasfsa  sfsdfdsfsfasfs
 		int k = 1000;
-		
+		int i = 10;
 	}
 
 	@Test
@@ -21,10 +21,6 @@ public class GitService {
 		System.out.println("mater branch b1 ");
 		System.out.println("greate world");
 		System.out.println("add in end");
-		System.out.println("这是local分支");
-		System.out.println("删除了tracing分支，且没有configure branch");
 		// asdfsfasfasfasf
-		System.out.println(">>>>>>>>>>>>>>>>>");
-		// add comment
 	}
 }
