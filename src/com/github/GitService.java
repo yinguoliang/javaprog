@@ -3,7 +3,7 @@ package com.github;
 import org.junit.Test;
 
 public class GitService {
-	public void test2() {
+	public void test2(String x) {
 		//asdsffasfsa
 	}
 
