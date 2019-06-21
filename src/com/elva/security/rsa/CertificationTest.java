@@ -24,6 +24,9 @@ public class CertificationTest {
         certGen.setSignatureAlgorithm("SM3WITHSM2");
         certGen.setSubjectDN(new X509Name("YYY.com"));
         certGen.setIssuerDN(new X509Name("YYY.com"));
+        /**
+         * 数字证书：公信人用自己的私钥来保证公钥的身份，使得某个公钥受到大家的信任
+         */
         X509Certificate cert = certGen.generate(trustedPrivateKey);
         
         System.out.println(cert);
