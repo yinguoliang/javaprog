@@ -5,6 +5,8 @@ import org.junit.Test;
 public class GitService {
 	public void test2(String x) {
 		//asdsffasfsa
+		int k = 1000;
+		
 	}
 
 	@Test
