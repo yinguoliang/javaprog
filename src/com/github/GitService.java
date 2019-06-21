@@ -15,7 +15,7 @@ public class GitService {
 		/// addd xxxxxx
 		System.out.println("add in head");
 		System.out.println("Hello Git");
-		System.out.println("AA >>> BB >> CC");
+		System.out.println("AA >>> BB >> CC >> DD");
 		System.out.println("cost time = " + System.currentTimeMillis());
 		System.out.println("mater branch b1 ");
 		System.out.println("mater branch b1 ");
